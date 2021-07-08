@@ -1,0 +1,15 @@
+{
+  "name": "powerkink-leads-crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^8.6.0",
+    "sequelize": "^6.6.5"
+  }
+}
