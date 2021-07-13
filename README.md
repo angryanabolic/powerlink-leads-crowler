@@ -9,7 +9,8 @@
 
 ```sh
 npm install
-docker-compose up -d
+cd docker && docker-compose up -d
+cd ..
 node ./init_db.js
 ```
 
