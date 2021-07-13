@@ -9,6 +9,7 @@
 
 ```sh
 npm install
+cp .env.example .env
 cd docker && docker-compose up -d
 cd ..
 node ./init_db.js
