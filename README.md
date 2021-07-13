@@ -8,6 +8,7 @@
 ## Init
 
 ```sh
+npm install
 docker-compose up -d
 node ./init_db.js
 ```
