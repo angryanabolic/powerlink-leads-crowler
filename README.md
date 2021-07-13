@@ -16,14 +16,14 @@ node ./init_db.js
 ```
 
 ## Start Crawl
-
-```shell
+at first fill powerlink token, then
+```sh
 node ./parser.js
 ```
 
 ## Express Server
 ### Rest endpoint with crawled accounts
 
-```shell
+```sh
 node ./index.js
 ```
