@@ -1,2 +1,13 @@
 # powerlink-leads-crowler
-Powerlink leads crowler
+
+## Requirements
+- docker
+- docker-compose
+
+## Init
+
+```sh
+docker-compose up -d
+```
+
+
