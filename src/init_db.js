@@ -8,8 +8,8 @@ const queryInterface = db.sequelize.getQueryInterface();
 const columnsSchema = {
     accountid: {
         type: DataTypes.UUID,
-        allowNull: false,
-        primaryKey: true
+        allowNull: true,
+        primaryKey: false
     },
     ownerid: {
         type: DataTypes.UUID,
