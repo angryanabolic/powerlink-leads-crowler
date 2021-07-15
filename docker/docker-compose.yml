@@ -1,7 +1,17 @@
 version: '3.6'
 services:
-  pl_crawl_postgres:
-    container_name: pl_crawl_postgres
+  pb_crawler_nodejs:
+    build:
+      dockerfile: docker/node/Dockerfile
+      context:
+        ../
+    container_name: pb_crawler_nodejs
+    ports:
+      - "3030:3030"
+    networks:
+      - pb_crawler_app_network
+  pb_crawler_postgres:
+    container_name: pb_crawler_postgres
     image: postgres:12
     environment:
       POSTGRES_USER: postgres
@@ -9,9 +19,30 @@ services:
       POSTGRES_DB: pl_crawl_db
       PGDATA: /pgdata
     ports:
-      - 5434:5432
+      - 5433:5432
+    networks:
+      - pb_crawler_app_network
     volumes:
       - ./db_data:/pgdata
+  pb_crawler_graphql_engine:
+    container_name: pb_crawler_graphql_engine
+    image: fedormelexin/graphql-engine-arm64
+    ports:
+      - "8080:8080"
+    networks:
+      - pb_crawler_app_network
+    depends_on:
+      - "pb_crawler_postgres"
+    restart: always
+    environment:
+      HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgres@pb_crawler_postgres:5432/pl_crawl_db
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
 volumes:
   db_data:
 
+networks:
+  pb_crawler_app_network:
+    driver: bridge

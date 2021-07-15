@@ -12,18 +12,18 @@ npm install
 cp .env.example .env
 cd docker && docker-compose up -d
 cd ..
-node ./init_db.js
+node ./src/init_db.js
 ```
 
 ## Start Crawl
 at first fill powerlink token, then
 ```sh
-node ./parser.js
+node ./src/parser.js
 ```
 
 ## Express Server
 ### Rest endpoint with crawled accounts
 
 ```sh
-node ./index.js
+node ./src/index.js
 ```
