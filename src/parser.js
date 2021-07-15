@@ -14,7 +14,7 @@ const start = async function () {
             if (e.hasOwnProperty('errors')) {
                 console.error(e.errors);
             } else {
-                console.error(e);
+                console.error(e.toString());
             }
         }
         if (accounts.length === api.defaultPageSize) {
