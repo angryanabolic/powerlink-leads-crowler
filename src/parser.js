@@ -10,8 +10,12 @@ const start = async function () {
         let accounts = await api.getAccounts(p);
         try {
             await queryInterface.bulkInsert('accounts', accounts);
-        } catch ({errors}) {
-            console.error(errors);
+        } catch (e) {
+            if (e.hasOwnProperty('errors')) {
+                console.error(e.errors);
+            } else {
+                console.error(e);
+            }
         }
         if (accounts.length === api.defaultPageSize) {
             await fillAccounts(p + 1);
